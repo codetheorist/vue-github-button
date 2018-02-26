@@ -1,26 +1,38 @@
-<template lang="html">
-  <strong>{{ text }}</strong>
-</template>
-
 <script>
-/**
- * Component documentation
- */
+import { render } from 'github-buttons'
+
 export default {
   name: 'vue-github-button',
-  props: {
-    /**
-     * The component text
-     */
-    text: {
-      type: String,
-      default: '',
-      required: true
-    },
+  props: [
+    'href',
+    'data-icon',
+    'data-size',
+    'data-show-count',
+    'data-text',
+    'aria-label'
+  ],
+  render (createElement) {
+    return createElement('span', [
+      createElement('a', {
+        attrs: {
+          'href': this.href,
+          'data-icon': this.dataIcon,
+          'data-size': this.dataSize,
+          'data-show-count': this.dataShowCount,
+          'data-text': this.dataText,
+          'aria-label': this.ariaLabel
+        }
+      }, this.$slots.default)
+    ])
   },
+  mounted () {
+    render(this._ = this.$el.firstChild)
+  },
+  beforeUpdate () {
+    this.$el.replaceChild(this._, this.$el.firstChild)
+  },
+  updated () {
+    render(this._ = this.$el.firstChild)
+  }
 }
 </script>
-
-<style lang="css" scoped>
-  /* place here your styles */
-</style>
