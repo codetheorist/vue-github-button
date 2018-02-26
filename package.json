@@ -23,6 +23,7 @@
     "dist/"
   ],
   "dependencies": {
+    "github-buttons": "0.0.1-security",
     "vue": "^2.5.3"
   },
   "devDependencies": {
